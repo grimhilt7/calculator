@@ -8,6 +8,8 @@ function initialize() {
   temp = '';
   operator = '';
   isDone = false;
+
+  indicator.textContent = '';
 }
 
 const calculater = (() => {
@@ -41,6 +43,7 @@ const tasker = (() => {
     if (number && temp && operator) {
       temp = operate(parseInt(number), parseInt(temp), operator);
       isDone = true;
+      indicator.textContent = '';
       updateDisplay(temp);
     }
   };
@@ -51,13 +54,19 @@ const tasker = (() => {
   };
 })();
 
-const display = document.querySelector('.display > div');
+
+const display = document.querySelector('.result');
+const indicator = document.querySelector('.indicator');
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const functionButtons = document.querySelectorAll('.function');
 
+function updateDisplay(value) {
+  display.textContent = value;
+}
+
 function inputNumber() {
-  if (isDone) { // for a new start
+  if (isDone) { // begin a new start if the calculation has been completed
     initialize();
   }
   number += this.id.slice(-1);
@@ -68,8 +77,8 @@ function inputOperator() {
   operator = this.id;
   temp = number;
   number = '';
-  
-  this.classList.add('highlight');
+
+  indicator.textContent = this.id;
 }
 
 function inputFunction() {
@@ -79,7 +88,3 @@ function inputFunction() {
 numberButtons.forEach(numberButton => numberButton.addEventListener('click', inputNumber));
 operatorButtons.forEach(operatorButton => operatorButton.addEventListener('click', inputOperator));
 functionButtons.forEach(functionButton => functionButton.addEventListener('click', inputFunction));
-
-function updateDisplay(value) {
-  display.textContent = value;
-}

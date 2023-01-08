@@ -1,0 +1,73 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: antiquewhite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 24px;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.calculator {
+  margin-top: 100px;
+  width: 300px;
+  height: 350px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.display {
+  border: 1px solid black;
+  padding: 10px;
+  width: 90%;
+  height: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.panel {
+  width: 90%;
+  height: 60%;
+
+  margin-top: 10%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  height:40%;
+}
+
+.row > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  user-select: none;
+}
+
+.row > div:hover {
+  background-color: lightgrey;
+}
+
+#num-0 {
+  flex: 3;
+}
+
+.highlight {
+  color: red;
+}

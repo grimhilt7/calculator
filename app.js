@@ -12,6 +12,14 @@ function initialize() {
   indicator.textContent = '';
 }
 
+function adjustFontsize(value) {
+  if (value.length >= 18) {
+    result.style.fontSize = `${270 / value.length * 1.5}px`;
+  } else {
+    result.style.fontSize = '24px';
+  }
+}
+
 const calculater = (() => {
   const sum = (a, b) => a + b;
   const sub = (a, b) => a - b;
@@ -41,9 +49,10 @@ const tasker = (() => {
   };
   function equal() {
     if (number && temp && operator) {
-      temp = operate(parseInt(number), parseInt(temp), operator);
+      temp = operate(parseInt(number), parseInt(temp), operator).toString(10);
       isDone = true;
       indicator.textContent = '';
+      adjustFontsize(temp);
       updateDisplay(temp);
     }
   };
@@ -55,14 +64,14 @@ const tasker = (() => {
 })();
 
 
-const display = document.querySelector('.result');
+const result = document.querySelector('.result');
 const indicator = document.querySelector('.indicator');
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const functionButtons = document.querySelectorAll('.function');
 
 function updateDisplay(value) {
-  display.textContent = value;
+  result.textContent = value;
 }
 
 function inputNumber() {
@@ -70,7 +79,11 @@ function inputNumber() {
     initialize();
   }
   number += this.id.slice(-1);
-  updateDisplay(number);
+  if (number === '0') { // prevent meaningless zeros
+    number = '';
+  }
+  adjustFontsize(number);
+  updateDisplay(number || '0');
 }
 
 function inputOperator() {

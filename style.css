@@ -12,7 +12,8 @@ body {
   align-items: center;
 
   font-size: 24px;
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
 }
 
 .calculator {
@@ -49,7 +50,7 @@ body {
 .row {
   display: flex;
   justify-content: center;
-  height:40%;
+  height: 40%;
 }
 
 .row > div {

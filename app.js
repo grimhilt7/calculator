@@ -49,7 +49,7 @@ const tasker = (() => {
   };
   function equal() {
     if (number && temp && operator) {
-      temp = operate(parseInt(number), parseInt(temp), operator).toString(10);
+      temp = operate(parseFloat(number), parseFloat(temp), operator).toString(10);
       isDone = true;
       indicator.textContent = '';
       adjustFontsize(temp);
@@ -69,6 +69,7 @@ const indicator = document.querySelector('.indicator');
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const functionButtons = document.querySelectorAll('.function');
+const periodButton = document.querySelector('#period');
 
 function updateDisplay(value) {
   result.textContent = value;
@@ -86,6 +87,13 @@ function inputNumber() {
   updateDisplay(number || '0');
 }
 
+function inputPeriod() {
+  if (!number.includes('.')) {
+    number += '.';
+  };
+  updateDisplay(number);
+}
+
 function inputOperator() {
   operator = this.id;
   temp = number;
@@ -101,3 +109,4 @@ function inputFunction() {
 numberButtons.forEach(numberButton => numberButton.addEventListener('click', inputNumber));
 operatorButtons.forEach(operatorButton => operatorButton.addEventListener('click', inputOperator));
 functionButtons.forEach(functionButton => functionButton.addEventListener('click', inputFunction));
+periodButton.addEventListener('click', inputPeriod);
